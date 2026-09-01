@@ -176,6 +176,44 @@ The generic-Ternlight leg of the eval calls the real npm package via
 cd ternlight-bridge && npm install
 ```
 
+## Using the trained checkpoint directly
+
+Everything above trains and evaluates the model. To just embed your own
+text with the resulting checkpoint, outside the eval harness, the whole
+call is `load_for_eval` (Ternlight's own real loading path, `evaluation.py`
+in its training repo) plus a standard `transformers` tokenizer, the exact
+pattern [`eval/eval_retrieval.py`](eval/eval_retrieval.py)'s `embed_ours()`
+uses:
+
+```python
+import sys
+sys.path.insert(0, "upstream/training/distill")  # after `git clone` per "Reproducing this" above
+
+import torch
+from evaluation import load_for_eval
+from transformers import AutoTokenizer
+
+device = "mps" if torch.backends.mps.is_available() else "cpu"
+CKPT = "upstream/training/distill/runs/techdocs-qat-<run-id>/checkpoint_ep30.pt"
+
+em = load_for_eval(CKPT, device, embedding_format="ternary")
+tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+
+texts = ["parses a JSON config file and returns a validated dict"]
+toks = tokenizer(texts, padding=True, truncation=True, max_length=128, return_tensors="pt")
+with torch.no_grad():
+    vectors = em.model(toks["input_ids"].to(device), toks["attention_mask"].to(device))
+# vectors: (len(texts), 384) tensor, ready to upsert into a Qdrant collection
+# (cosine distance, size=384) the same way build_collection() in eval_retrieval.py does.
+```
+
+This needs a real trained checkpoint on disk first, either your own run of
+the "Reproducing this" commands above (~50 minutes total), or the generic,
+already-published `@ternlight/base` package instead if you don't need the
+techdocs-specific tuning, callable straight from Node via
+[`ternlight-bridge/embed_batch.mjs`](ternlight-bridge/embed_batch.mjs)
+without training anything.
+
 ## What's not included, and why
 
 - **Trained checkpoints (`.pt` files, ~109 MB each).** Over GitHub's un-LFS'd file
