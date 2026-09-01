@@ -1,0 +1,29 @@
+Python(8858) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(8868) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Real held-out CodeSearchNet test set: 500 query/document pairs (same id in both lists = the correct match)
+
+=== fastembed_bge_small ===
+  embedded 500 documents in 297.43s (1.7 docs/sec)
+  embedded 500 queries in 205.33s (410.66 ms/query)
+  {'recall@1': 0.982, 'recall@5': 0.992, 'recall@10': 0.996}
+
+=== generic_ternlight_base ===
+  embedded 500 documents in 25.88s (19.3 docs/sec)
+  embedded 500 queries in 10.17s (20.34 ms/query)
+  {'recall@1': 0.902, 'recall@5': 0.966, 'recall@10': 0.974}
+
+=== ours_techdocs_ternlight ===
+→ Loading ckpt: ../upstream/training/distill/runs/techdocs-qat-23da804/checkpoint_ep30.pt
+  source run: techdocs-qat  epoch=30  qat=True
+  swapped 12 nn.Linear → BitLinear (lambda=1)
+  ternarized embedding: scale=0.0161  zero_frac=0.310
+  embedded 500 documents in 1.40s (357.5 docs/sec)
+→ Loading ckpt: ../upstream/training/distill/runs/techdocs-qat-23da804/checkpoint_ep30.pt
+  source run: techdocs-qat  epoch=30  qat=True
+  swapped 12 nn.Linear → BitLinear (lambda=1)
+  ternarized embedding: scale=0.0161  zero_frac=0.310
+  embedded 500 queries in 0.82s (1.64 ms/query)
+  {'recall@1': 0.872, 'recall@5': 0.948, 'recall@10': 0.964}
+
+Wrote /Users/apple/Downloads/repos-final/qdrant-ternlight-techdocs/eval/results.json

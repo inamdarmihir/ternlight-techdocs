@@ -1,0 +1,30 @@
+wandb_project: ternlight-techdocs
+wandb_group: codesearchnet-python-25k-d256
+wandb_tags: [tier:techdocs, phase:poc-scale, mode:qat]
+
+train:
+  vocab_size: 30522
+  d_model: 256
+  n_layers: 2
+  n_heads: 4
+  ffn_dim: 1024
+  output_dim: 384
+  dropout: 0.1
+
+  cache_dir: cache
+  cache_name: techdocs_25k
+
+  epochs: 30
+  batch_size: 64
+  lr: 1.0e-4
+  weight_decay: 0.01
+  lr_warmup_ratio: 0.10
+  grad_clip: 1.0
+
+  enable_qat: true
+  qat_warmup_epochs: 5      # POC value
+  contrastive_w: 0.15       # POC value
+
+  run_name: techdocs-qat
+  runs_dir: runs
+  save_every: 5

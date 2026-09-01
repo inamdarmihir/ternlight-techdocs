@@ -1,0 +1,26 @@
+# Real techdocs run. 25,000 samples matches the project's own documented POC
+# scale ("POC: 30 at 25k" per micro-fp32.yaml's comment), not the full
+# 1M-sample "rigorous" tier, scoped down for realistic session wall-clock time.
+wandb_project: ternlight-techdocs
+wandb_group: codesearchnet-python-25k-d256
+wandb_tags: [tier:techdocs, phase:poc-scale, dataset:codesearchnet-python]
+
+data:
+  sources:
+    - name: codesearchnet_python
+      hf_dataset: code-search-net/code_search_net
+      hf_config: python
+      split: train
+      text_field: func_documentation_string
+      weight: 1.0
+  total_samples: 25_000
+  max_len: 128
+  teacher_id: sentence-transformers/all-MiniLM-L6-v2
+  teacher_revision: main
+  tokenizer_id: bert-base-uncased
+  teacher_batch_size: 128
+  seed: 42
+  val_ratio: 0.05
+  test_ratio: 0.05
+  cache_dir: cache
+  cache_name: techdocs_25k

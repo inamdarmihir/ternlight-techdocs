@@ -1,0 +1,9 @@
+venv/
+upstream/
+cache/
+runs/
+model/
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store

@@ -1,0 +1,32 @@
+{
+  "fastembed_bge_small": {
+    "n_documents": 500,
+    "n_queries": 500,
+    "document_embed_seconds": 297.43,
+    "document_embed_per_sec": 1.7,
+    "query_embed_ms_per_query": 410.655,
+    "recall@1": 0.982,
+    "recall@5": 0.992,
+    "recall@10": 0.996
+  },
+  "generic_ternlight_base": {
+    "n_documents": 500,
+    "n_queries": 500,
+    "document_embed_seconds": 25.88,
+    "document_embed_per_sec": 19.3,
+    "query_embed_ms_per_query": 20.339,
+    "recall@1": 0.902,
+    "recall@5": 0.966,
+    "recall@10": 0.974
+  },
+  "ours_techdocs_ternlight": {
+    "n_documents": 500,
+    "n_queries": 500,
+    "document_embed_seconds": 1.4,
+    "document_embed_per_sec": 357.5,
+    "query_embed_ms_per_query": 1.637,
+    "recall@1": 0.872,
+    "recall@5": 0.948,
+    "recall@10": 0.964
+  }
+}

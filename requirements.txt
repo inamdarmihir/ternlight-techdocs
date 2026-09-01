@@ -1,0 +1,10 @@
+# For this repo's own scripts: eval/build_test_set.py and eval/eval_retrieval.py.
+# Training itself runs inside a separately cloned copy of the upstream ternlight
+# repo, using that repo's own requirements.txt (see README "Reproducing" section).
+torch>=2.0
+transformers>=4.40
+datasets>=2.18
+qdrant-client>=1.19
+fastembed>=0.3
+bitlinear==2.4.6   # pinned — BitLinear forward math must match the checkpoint exactly
+numpy>=1.24
