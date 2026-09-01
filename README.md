@@ -8,7 +8,7 @@ through Qdrant.
 
 ## Why this exists
 
-A Qdrant DevRel benchmark ([static-embeddings](https://github.com/Dylancouzon/static-embeddings))
+A published Qdrant benchmark ([static-embeddings](https://github.com/Dylancouzon/static-embeddings))
 tested what happens when you remove the transformer entirely and use static,
 model2vec-style embeddings instead. The finding was clear: static wins on speed
 (about 9,100 docs/sec vs. 31 docs/sec for `bge-small` ONNX at batch 32) and loses on
