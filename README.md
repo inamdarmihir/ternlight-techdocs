@@ -1,4 +1,4 @@
-# qdrant-ternlight-techdocs
+# ternlight-techdocs
 
 A domain-specialized distillation of [Ternlight](https://github.com/soycaporal/ternlight)
 (a ternary-quantized, BitLinear transformer embedder, weights in `{-1, 0, +1}`) for
