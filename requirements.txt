@@ -1,6 +1,10 @@
 # For this repo's own scripts: eval/build_test_set.py and eval/eval_retrieval.py.
 # Training itself runs inside a separately cloned copy of the upstream ternlight
 # repo, using that repo's own requirements.txt (see README "Reproducing" section).
+#
+# Python: 3.10-3.12 (3.11 recommended, see .python-version). torch>=2.0 and
+# transformers>=4.40 both support this range; MPS (Apple Silicon) needs
+# torch>=1.12 and macOS 12.3+, well under the torch>=2.0 floor here.
 torch>=2.0
 transformers>=4.40
 datasets>=2.18
